@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  HomeViewController.h
 //  Todo Anywhere
 //
 //  Created by Robert Hatfield on 5/8/17.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+@interface HomeViewController : UIViewController
 
 
 @end

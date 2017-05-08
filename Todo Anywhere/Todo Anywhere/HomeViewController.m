@@ -1,17 +1,17 @@
 //
-//  ViewController.m
+//  HomeViewController.m
 //  Todo Anywhere
 //
 //  Created by Robert Hatfield on 5/8/17.
 //  Copyright © 2017 Robert Hatfield. All rights reserved.
 //
 
-#import "ViewController.h"
+#import "HomeViewController.h"
 #import "LoginViewController.h"
 @import FirebaseAuth;
 @import Firebase;
 
-@interface ViewController ()
+@interface HomeViewController ()
 
 @property(strong, nonatomic) FIRDatabaseReference *userReference;
 @property(strong, nonatomic) FIRUser *currentUser;
@@ -20,7 +20,7 @@
 
 @end
 
-@implementation ViewController
+@implementation HomeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
