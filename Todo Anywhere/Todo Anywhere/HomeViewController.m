@@ -11,6 +11,10 @@
 @import FirebaseAuth;
 @import Firebase;
 
+static CGFloat const kClosedConstraint = 0.0;
+static CGFloat const kOpenConstraint = 150.0;
+static NSTimeInterval const kShortAnimationDuration = 0.34;
+
 @interface HomeViewController ()
 
 @property(strong, nonatomic) FIRDatabaseReference *userReference;
@@ -20,12 +24,15 @@
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *logOutButton;
 
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *createTodoHeightConstraint;
+
 @end
 
 @implementation HomeViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    self.createTodoHeightConstraint.constant = kClosedConstraint;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -69,6 +76,7 @@
     }];
 }
 
+//MARK: User actions
 - (IBAction)logOutPressed:(UIBarButtonItem *)sender {
     NSError *signOutError;
     [[FIRAuth auth] signOut:&signOutError];
@@ -79,6 +87,21 @@
         [self.logOutButton setEnabled:NO];
         [self checkUserStatus];
     }
+}
+
+- (IBAction)addButtonPressed:(UIBarButtonItem *)sender {
+    if (self.createTodoHeightConstraint.constant == kOpenConstraint) {
+        self.createTodoHeightConstraint.constant = kClosedConstraint;
+        
+    } else {
+        self.createTodoHeightConstraint.constant = kOpenConstraint;
+        
+    }
+    
+    [UIView animateWithDuration:kShortAnimationDuration animations:^{
+        [self.view layoutIfNeeded];
+    }];
+    
 }
 
 
