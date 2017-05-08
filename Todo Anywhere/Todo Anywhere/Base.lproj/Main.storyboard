@@ -40,7 +40,16 @@
                             <constraint firstItem="cCG-mS-72L" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="vnS-67-mQ9"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="To Do List" id="K3V-78-Dq3"/>
+                    <navigationItem key="navigationItem" title="To Do List" id="K3V-78-Dq3">
+                        <barButtonItem key="leftBarButtonItem" title="Log Out" id="QeD-Pt-DAI">
+                            <connections>
+                                <action selector="logOutPressed:" destination="BYZ-38-t0r" id="wgn-fM-v0O"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="logOutButton" destination="QeD-Pt-DAI" id="QyZ-tL-R9B"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>

@@ -18,6 +18,8 @@
 
 @property(nonatomic) FIRDatabaseHandle allTodosHandler;
 
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *logOutButton;
+
 @end
 
 @implementation HomeViewController
@@ -40,6 +42,7 @@
     } else {
         [self setupFirebase];
         [self startMonitoringTodoUpdates];
+        [self.logOutButton setEnabled:YES];
     }
 }
 
@@ -64,6 +67,18 @@
             NSLog(@"Todo Title: %@ - Content: %@", todoTitle, todoContent);
         }
     }];
+}
+
+- (IBAction)logOutPressed:(UIBarButtonItem *)sender {
+    NSError *signOutError;
+    [[FIRAuth auth] signOut:&signOutError];
+    
+    if(signOutError) {
+        NSLog(@"Error signing out: %@", signOutError.localizedDescription);
+    } else {
+        [self.logOutButton setEnabled:NO];
+        [self checkUserStatus];
+    }
 }
 
 
