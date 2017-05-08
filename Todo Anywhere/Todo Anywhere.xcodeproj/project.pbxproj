@@ -15,6 +15,7 @@
 		620F04B11EC0DF6A00C9E67D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 620F04AF1EC0DF6A00C9E67D /* LaunchScreen.storyboard */; };
 		620F04B91EC0DFF600C9E67D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 620F04B81EC0DFF600C9E67D /* GoogleService-Info.plist */; };
 		625DFEA41EC0EBC500ADBA70 /* LoginViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 625DFEA31EC0EBC500ADBA70 /* LoginViewController.m */; };
+		625DFEAA1EC108D700ADBA70 /* CustomButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 625DFEA91EC108D700ADBA70 /* CustomButton.m */; };
 		D7BC83FEFF8BB2C09077E77F /* libPods-Todo Anywhere.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E00FCFDD18FB57F87C6E86A5 /* libPods-Todo Anywhere.a */; };
 /* End PBXBuildFile section */
 
@@ -33,6 +34,8 @@
 		620F04B81EC0DFF600C9E67D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		625DFEA21EC0EBC500ADBA70 /* LoginViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginViewController.h; sourceTree = "<group>"; };
 		625DFEA31EC0EBC500ADBA70 /* LoginViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginViewController.m; sourceTree = "<group>"; };
+		625DFEA81EC108D700ADBA70 /* CustomButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomButton.h; sourceTree = "<group>"; };
+		625DFEA91EC108D700ADBA70 /* CustomButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CustomButton.m; sourceTree = "<group>"; };
 		E00FCFDD18FB57F87C6E86A5 /* libPods-Todo Anywhere.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Todo Anywhere.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F02C477CC06A437489E05D03 /* Pods-Todo Anywhere.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Todo Anywhere.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Todo Anywhere/Pods-Todo Anywhere.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -113,6 +116,8 @@
 		620F04BB1EC0E04200C9E67D /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				625DFEA81EC108D700ADBA70 /* CustomButton.h */,
+				625DFEA91EC108D700ADBA70 /* CustomButton.m */,
 				620F04AA1EC0DF6A00C9E67D /* Main.storyboard */,
 				620F04AF1EC0DF6A00C9E67D /* LaunchScreen.storyboard */,
 			);
@@ -252,6 +257,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				625DFEA41EC0EBC500ADBA70 /* LoginViewController.m in Sources */,
+				625DFEAA1EC108D700ADBA70 /* CustomButton.m in Sources */,
 				620F04A91EC0DF6A00C9E67D /* ViewController.m in Sources */,
 				620F04A61EC0DF6A00C9E67D /* AppDelegate.m in Sources */,
 				620F04A31EC0DF6A00C9E67D /* main.m in Sources */,
