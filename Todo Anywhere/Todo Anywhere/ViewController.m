@@ -60,7 +60,7 @@
             NSString *todoTitle = todoData[@"title"];
             NSString *todoContent = todoData[@"content"];
             
-            // TODO: Append new Todo to alTodos array
+            // TODO: Append new Todo to allTodos array
             NSLog(@"Todo Title: %@ - Content: %@", todoTitle, todoContent);
         }
     }];
