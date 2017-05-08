@@ -44,7 +44,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1056.8" y="34.632683658170919"/>
+            <point key="canvasLocation" x="780" y="35"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="0zj-9F-u0e">
@@ -74,7 +74,7 @@
                                 <rect key="frame" x="47" y="174" width="281" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="05l-pZ-mpe" customClass="CustomButton">
                                 <rect key="frame" x="47" y="234" width="136.5" height="30"/>
@@ -132,7 +132,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Kiy-M7-59K" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="118" y="682"/>
+            <point key="canvasLocation" x="41" y="703"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="JDq-Cu-3HF">
@@ -156,6 +156,10 @@
         <scene sceneID="F9o-30-MhS">
             <objects>
                 <viewController id="T1d-QY-FDG" customClass="NewTodoViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Jeh-wV-thf"/>
+                        <viewControllerLayoutGuide type="bottom" id="MsP-dn-eOf"/>
+                    </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="s7a-K5-iTc">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="150"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -216,7 +220,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Q5K-Yd-WGd" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1844" y="-284.25787106446779"/>
+            <point key="canvasLocation" x="1569" y="-198"/>
         </scene>
     </scenes>
 </document>
