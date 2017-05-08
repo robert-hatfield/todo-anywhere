@@ -30,7 +30,7 @@
         <!--Login View Controller-->
         <scene sceneID="0zj-9F-u0e">
             <objects>
-                <viewController id="ejZ-Qk-VlD" customClass="LoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="ejZ-Qk-VlD" customClass="LoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="PgY-da-1CQ"/>
                         <viewControllerLayoutGuide type="bottom" id="8T5-vP-7cG"/>
@@ -63,6 +63,9 @@
                                 <state key="normal" title="Login">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="loginPressed:" destination="ejZ-Qk-VlD" eventType="touchUpInside" id="yow-zV-3Wb"/>
+                                </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Fg4-JH-NEm">
                                 <rect key="frame" x="191.5" y="234" width="136.5" height="30"/>
@@ -70,6 +73,9 @@
                                 <state key="normal" title="Sign up">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
+                                <connections>
+                                    <action selector="signUpPressed:" destination="ejZ-Qk-VlD" eventType="touchUpInside" id="H3O-TI-hyE"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
