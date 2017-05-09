@@ -237,9 +237,9 @@
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eK8-du-g3f" customClass="CustomButton">
-                                <rect key="frame" x="277" y="116.5" width="82" height="26"/>
+                                <rect key="frame" x="273" y="116.5" width="86" height="26"/>
                                 <color key="backgroundColor" red="0.0" green="0.50196081400000003" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                <inset key="contentEdgeInsets" minX="4" minY="4" maxX="4" maxY="4"/>
+                                <inset key="contentEdgeInsets" minX="6" minY="4" maxX="6" maxY="4"/>
                                 <state key="normal" title="Add TODO">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
