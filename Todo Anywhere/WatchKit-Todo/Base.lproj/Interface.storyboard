@@ -28,6 +28,7 @@
                                     <connections>
                                         <outlet property="contentLabel" destination="H2P-2z-vmb" id="1Fm-tt-TSF"/>
                                         <outlet property="titleLabel" destination="eeq-hQ-909" id="XXL-Y4-tRr"/>
+                                        <segue destination="z8e-aG-xuM" kind="push" identifier="showTodoDetail" id="wOF-Rx-g6o"/>
                                     </connections>
                                 </tableRow>
                             </items>
@@ -43,6 +44,24 @@
                     </connections>
                 </controller>
             </objects>
+        </scene>
+        <!--WatchDetailViewController-->
+        <scene sceneID="Bge-9M-gQO">
+            <objects>
+                <controller identifier="WatchDetailViewController" id="z8e-aG-xuM" customClass="WatchDetailViewController">
+                    <items>
+                        <label alignment="left" text="Title" id="dAq-qp-mk3">
+                            <fontDescription key="font" style="UICTFontTextStyleHeadline"/>
+                        </label>
+                        <label alignment="left" text="Content" numberOfLines="0" id="kBU-Hw-FbB"/>
+                    </items>
+                    <connections>
+                        <outlet property="contentLabel" destination="kBU-Hw-FbB" id="JQF-iB-obU"/>
+                        <outlet property="titleLabel" destination="dAq-qp-mk3" id="aLu-8Z-lh6"/>
+                    </connections>
+                </controller>
+            </objects>
+            <point key="canvasLocation" x="273" y="53"/>
         </scene>
     </scenes>
 </document>

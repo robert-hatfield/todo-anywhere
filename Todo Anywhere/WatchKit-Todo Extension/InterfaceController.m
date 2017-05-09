@@ -63,12 +63,11 @@
     [super didDeactivate];
 }
 
-- (void)table:(WKInterfaceTable *)table didSelectRowAtIndex:(NSInteger)rowIndex {
-    
+- (id)contextForSegueWithIdentifier:(NSString *)segueIdentifier inTable:(WKInterfaceTable *)table rowIndex:(NSInteger)rowIndex {
+    return self.allTodos[rowIndex];
 }
 
 - (IBAction)newTodoPressed {
-    
     NSArray *suggestions = @[@"Get groceries", @"Walk the dog", @"Pay bills"];
     [self presentTextInputControllerWithSuggestions:suggestions allowedInputMode:WKTextInputModePlain completion:^(NSArray * _Nullable results) {
         NSLog(@"%@", results);

@@ -89,7 +89,7 @@ static NSTimeInterval const kShortAnimationDuration = 0.34;
     }];
 }
 
-//MARK: Tableview delegate methods
+//MARK: Tableview datasource methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     NSLog(@"# of todos:%lu", (unsigned long)self.allTodos.count);
     return self.allTodos.count;

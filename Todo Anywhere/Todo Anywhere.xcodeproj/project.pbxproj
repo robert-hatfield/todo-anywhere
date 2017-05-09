@@ -34,6 +34,7 @@
 		62DC7BE01EC246C2006D8AB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62DC7BDF1EC246C2006D8AB6 /* Assets.xcassets */; };
 		62DC7BE71EC248B8006D8AB6 /* TVHomeViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62DC7BE61EC248B8006D8AB6 /* TVHomeViewController.m */; };
 		62DC7BE81EC249D1006D8AB6 /* Todo.m in Sources */ = {isa = PBXBuildFile; fileRef = 625DFEAF1EC134F800ADBA70 /* Todo.m */; };
+		62DC7BEB1EC27409006D8AB6 /* WatchDetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 62DC7BEA1EC27409006D8AB6 /* WatchDetailViewController.m */; };
 		D7BC83FEFF8BB2C09077E77F /* libPods-Todo Anywhere.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E00FCFDD18FB57F87C6E86A5 /* libPods-Todo Anywhere.a */; };
 /* End PBXBuildFile section */
 
@@ -124,6 +125,8 @@
 		62DC7BE11EC246C2006D8AB6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		62DC7BE51EC248B8006D8AB6 /* TVHomeViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TVHomeViewController.h; sourceTree = "<group>"; };
 		62DC7BE61EC248B8006D8AB6 /* TVHomeViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TVHomeViewController.m; sourceTree = "<group>"; };
+		62DC7BE91EC27409006D8AB6 /* WatchDetailViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WatchDetailViewController.h; sourceTree = "<group>"; };
+		62DC7BEA1EC27409006D8AB6 /* WatchDetailViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WatchDetailViewController.m; sourceTree = "<group>"; };
 		E00FCFDD18FB57F87C6E86A5 /* libPods-Todo Anywhere.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Todo Anywhere.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F02C477CC06A437489E05D03 /* Pods-Todo Anywhere.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Todo Anywhere.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Todo Anywhere/Pods-Todo Anywhere.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -259,6 +262,8 @@
 		62DC7BB41EC233AB006D8AB6 /* WatchKit-Todo Extension */ = {
 			isa = PBXGroup;
 			children = (
+				62DC7BE91EC27409006D8AB6 /* WatchDetailViewController.h */,
+				62DC7BEA1EC27409006D8AB6 /* WatchDetailViewController.m */,
 				62DC7BC91EC23F3D006D8AB6 /* TodoRowController.h */,
 				62DC7BCA1EC23F3D006D8AB6 /* TodoRowController.m */,
 				62DC7BB51EC233AB006D8AB6 /* InterfaceController.h */,
@@ -542,6 +547,7 @@
 				62DC7BB71EC233AB006D8AB6 /* InterfaceController.m in Sources */,
 				62DC7BCB1EC23F3D006D8AB6 /* TodoRowController.m in Sources */,
 				62DC7BCC1EC2427A006D8AB6 /* Todo.m in Sources */,
+				62DC7BEB1EC27409006D8AB6 /* WatchDetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
