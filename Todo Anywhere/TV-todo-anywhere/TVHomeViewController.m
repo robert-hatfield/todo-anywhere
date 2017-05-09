@@ -30,11 +30,11 @@
     firstTodo.content = @"This is a todo.";
     
     Todo *secondTodo = [[Todo alloc] init];
-    secondTodo.title = @"First todo";
+    secondTodo.title = @"Second todo";
     secondTodo.content = @"This too, is a todo.";
     
     Todo *thirdTodo = [[Todo alloc] init];
-    thirdTodo.title = @"First todo";
+    thirdTodo.title = @"Third todo";
     thirdTodo.content = @"And this is a do to do. It's probably past due.";
     
     return @[firstTodo, secondTodo, thirdTodo];
