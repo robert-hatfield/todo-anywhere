@@ -63,6 +63,18 @@
     [super didDeactivate];
 }
 
+- (void)table:(WKInterfaceTable *)table didSelectRowAtIndex:(NSInteger)rowIndex {
+    
+}
+
+- (IBAction)newTodoPressed {
+    
+    NSArray *suggestions = @[@"Get groceries", @"Walk the dog", @"Pay bills"];
+    [self presentTextInputControllerWithSuggestions:suggestions allowedInputMode:WKTextInputModePlain completion:^(NSArray * _Nullable results) {
+        NSLog(@"%@", results);
+    }];
+}
+
 @end
 
 

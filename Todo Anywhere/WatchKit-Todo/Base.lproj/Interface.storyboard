@@ -32,6 +32,11 @@
                                 </tableRow>
                             </items>
                         </table>
+                        <button width="1" alignment="left" title="New Todo" id="QE6-jg-C86">
+                            <connections>
+                                <action selector="newTodoPressed" destination="AgC-eL-Hgc" id="ISO-J8-v4h"/>
+                            </connections>
+                        </button>
                     </items>
                     <connections>
                         <outlet property="table" destination="b7A-6x-OZz" id="qq4-c9-PNo"/>
