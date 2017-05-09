@@ -14,5 +14,6 @@
 @property (strong, nonatomic) Todo *todo;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *contentLabel;
+@property (nonatomic) Boolean isCompleted;
 
 @end

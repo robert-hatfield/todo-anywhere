@@ -74,12 +74,15 @@ static NSTimeInterval const kShortAnimationDuration = 0.34;
             NSDictionary *todoData = child.value;
             NSString *todoTitle = todoData[@"title"];
             NSString *todoContent = todoData[@"content"];
+            NSNumber *boolNumber = todoData[@"isCompleted"];
+            Boolean isCompleted = boolNumber.boolValue;
             
             // TODO: Append new Todo to allTodos array
             NSLog(@"Todo Title: %@ - Content: %@", todoTitle, todoContent);
             Todo *currentTodo = [[Todo alloc] init];
             currentTodo.title = todoTitle;
             currentTodo.content = todoContent;
+            currentTodo.isCompleted = isCompleted;
             [self.allTodos addObject:currentTodo];
         }
         [self.todoTableView reloadData];

@@ -34,6 +34,7 @@
     FIRDatabaseReference *newtodoReference = [[userReference child:@"todos"] childByAutoId];
     [[newtodoReference child:@"title"] setValue:self.titleTextField.text];
     [[newtodoReference child:@"content"] setValue:self.contentTextField.text];
+    [[newtodoReference child:@"isCompleted"] setValue: @0];
     self.titleTextField.text = @"";
     self.contentTextField.text = @"";
     [self.titleTextField resignFirstResponder];
