@@ -7,6 +7,7 @@
 //
 
 #import "InterfaceController.h"
+#import "TodoRowController.h"
 #import "Todo.h"
 
 @interface InterfaceController ()
@@ -23,6 +24,33 @@
     [super awakeWithContext:context];
 
     // Configure interface objects here.
+    [self setupTable];
+}
+
+- (void)setupTable {
+    [self.table setNumberOfRows:self.allTodos.count withRowType:@"TodoRowController"];
+    
+    for (NSInteger i = 0; i < self.allTodos.count; i++) {
+        TodoRowController *rowController = [self.table rowControllerAtIndex:i];
+        [rowController.titleLabel setText:self.allTodos[i].title];
+        [rowController.contentLabel setText:self.allTodos[i].content];
+    }
+}
+
+- (NSArray<Todo *> *)allTodos {
+    Todo *firstTodo = [[Todo alloc] init];
+    firstTodo.title = @"First todo";
+    firstTodo.content = @"This is a todo.";
+    
+    Todo *secondTodo = [[Todo alloc] init];
+    secondTodo.title = @"First todo";
+    secondTodo.content = @"This too, is a todo.";
+    
+    Todo *thirdTodo = [[Todo alloc] init];
+    thirdTodo.title = @"First todo";
+    thirdTodo.content = @"And this is a do to do. It's probably past due.";
+    
+    return @[firstTodo, secondTodo, thirdTodo];
 }
 
 - (void)willActivate {
