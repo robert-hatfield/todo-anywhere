@@ -19,7 +19,7 @@
     self.layer.cornerRadius = self.cornerRadius;
 }
 
-- (void)setBorderRadius:(CGFloat)cornerRadius {
+- (void)setCornerRadius:(CGFloat)cornerRadius {
     if (cornerRadius != _cornerRadius) {
         _cornerRadius = cornerRadius;
         [self updateLayerProperties];

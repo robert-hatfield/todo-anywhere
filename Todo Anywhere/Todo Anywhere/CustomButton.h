@@ -12,6 +12,6 @@ IB_DESIGNABLE
 
 @interface CustomButton : UIButton
 
-@property (nonatomic, assign) IBInspectable CGFloat cornerRadius;
+@property (nonatomic) IBInspectable CGFloat cornerRadius;
 
 @end
