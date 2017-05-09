@@ -97,11 +97,9 @@ static NSTimeInterval const kShortAnimationDuration = 0.34;
     
     TodoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
     
-    
     Todo *currentTodo = self.allTodos[indexPath.row];
     cell.titleLabel.text = currentTodo.title;
     cell.contentLabel.text = currentTodo.content;
-    
     
     return cell;
 }
@@ -131,6 +129,5 @@ static NSTimeInterval const kShortAnimationDuration = 0.34;
     }];
     
 }
-
 
 @end
