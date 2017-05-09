@@ -8,8 +8,9 @@
 
 #import "TVHomeViewController.h"
 #import "Todo.h"
+#import "TVDetailViewController.h"
 
-@interface TVHomeViewController () <UITableViewDataSource>
+@interface TVHomeViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray<Todo *> *allTodos;
@@ -22,6 +23,7 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view.
     self.tableView.dataSource = self;
+    self.tableView.delegate = self;
 }
 
 - (NSArray<Todo *> *)allTodos {
@@ -49,6 +51,17 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return self.allTodos.count;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self performSegueWithIdentifier:@"showTodoDetail" sender:self];
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    [super prepareForSegue:segue sender:sender];
+    TVDetailViewController *destinationVC = segue.destinationViewController;
+    Todo *selectedTodo = self.allTodos[self.tableView.indexPathForSelectedRow.row];
+    destinationVC.todo = selectedTodo;
 }
 
 @end
