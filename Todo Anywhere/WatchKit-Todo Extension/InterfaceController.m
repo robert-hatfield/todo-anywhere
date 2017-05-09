@@ -7,9 +7,12 @@
 //
 
 #import "InterfaceController.h"
-
+#import "Todo.h"
 
 @interface InterfaceController ()
+
+@property (unsafe_unretained, nonatomic) IBOutlet WKInterfaceTable *table;
+@property (strong, nonatomic) NSArray<Todo *> *allTodos;
 
 @end
 
