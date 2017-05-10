@@ -54,6 +54,10 @@ static NSTimeInterval const kShortAnimationDuration = 0.34;
     [self.todoTableView reloadData];
 }
 
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter]removeObserver:self name:@"todosChanged" object:nil];
+}
+
 //- (void)checkUserStatus {
 //    // Present login view if user is not logged in, otherwise setup Firebase references.
 //    if (![[FIRAuth auth] currentUser]) {
