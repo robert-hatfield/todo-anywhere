@@ -47,7 +47,17 @@
 //        NSLog(@"ROOT OBJECT: %@", rootObject);
                 
                 if (completion) {
-                    completion(allTodos);
+
+// Operation queues have a small bit of overhead.
+// Unneeded since we won't need to cancel the operation or add KVO.
+//                    [[NSOperationQueue mainQueue] addOperationWithBlock:^{
+//                        completion(allTodos);
+//                    }];
+                    
+// GCD "fire and forget" equivalent of the above to run this asynchronously.
+                    dispatch_async(dispatch_get_main_queue(), ^{
+                    completion([allTodos copy]);
+                    });
                 }
                 
     }] resume];
