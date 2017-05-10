@@ -9,6 +9,7 @@
 #import "TVHomeViewController.h"
 #import "Todo.h"
 #import "TVDetailViewController.h"
+#import "FirebaseAPI.h"
 
 @interface TVHomeViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -24,23 +25,29 @@
     // Do any additional setup after loading the view.
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    
+    [FirebaseAPI fetchAllTodos:^(NSArray<Todo *> *allTodos) {
+        NSLog(@"All todos: %@", allTodos);
+        self.allTodos = allTodos;
+        [self.tableView reloadData];
+    }];
 }
 
-- (NSArray<Todo *> *)allTodos {
-    Todo *firstTodo = [[Todo alloc] init];
-    firstTodo.title = @"First todo";
-    firstTodo.content = @"This is a todo.";
-    
-    Todo *secondTodo = [[Todo alloc] init];
-    secondTodo.title = @"Second todo";
-    secondTodo.content = @"This too, is a todo.";
-    
-    Todo *thirdTodo = [[Todo alloc] init];
-    thirdTodo.title = @"Third todo";
-    thirdTodo.content = @"And this is a do to do. It's probably past due.";
-    
-    return @[firstTodo, secondTodo, thirdTodo];
-}
+//- (NSArray<Todo *> *)allTodos {
+//    Todo *firstTodo = [[Todo alloc] init];
+//    firstTodo.title = @"First todo";
+//    firstTodo.content = @"This is a todo.";
+//    
+//    Todo *secondTodo = [[Todo alloc] init];
+//    secondTodo.title = @"Second todo";
+//    secondTodo.content = @"This too, is a todo.";
+//    
+//    Todo *thirdTodo = [[Todo alloc] init];
+//    thirdTodo.title = @"Third todo";
+//    thirdTodo.content = @"And this is a do to do. It's probably past due.";
+//    
+//    return @[firstTodo, secondTodo, thirdTodo];
+//}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];

@@ -19,6 +19,7 @@
 		625DFEAD1EC10E6400ADBA70 /* NewTodoViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 625DFEAC1EC10E6400ADBA70 /* NewTodoViewController.m */; };
 		625DFEB01EC134F800ADBA70 /* Todo.m in Sources */ = {isa = PBXBuildFile; fileRef = 625DFEAF1EC134F800ADBA70 /* Todo.m */; };
 		625DFEB41EC1386400ADBA70 /* TodoTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 625DFEB31EC1386400ADBA70 /* TodoTableViewCell.m */; };
+		62CC7E061EC3842800675A2A /* FirebaseAPI.m in Sources */ = {isa = PBXBuildFile; fileRef = 62CC7E051EC3842800675A2A /* FirebaseAPI.m */; };
 		62DC7BA81EC233AB006D8AB6 /* Interface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 62DC7BA61EC233AB006D8AB6 /* Interface.storyboard */; };
 		62DC7BAA1EC233AB006D8AB6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 62DC7BA91EC233AB006D8AB6 /* Assets.xcassets */; };
 		62DC7BB11EC233AB006D8AB6 /* WatchKit-Todo Extension.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 62DC7BB01EC233AB006D8AB6 /* WatchKit-Todo Extension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -106,6 +107,9 @@
 		625DFEAF1EC134F800ADBA70 /* Todo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Todo.m; sourceTree = "<group>"; };
 		625DFEB21EC1386400ADBA70 /* TodoTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TodoTableViewCell.h; sourceTree = "<group>"; };
 		625DFEB31EC1386400ADBA70 /* TodoTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TodoTableViewCell.m; sourceTree = "<group>"; };
+		62CC7E031EC382CA00675A2A /* Credentials.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Credentials.h; sourceTree = "<group>"; };
+		62CC7E041EC3842800675A2A /* FirebaseAPI.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FirebaseAPI.h; sourceTree = "<group>"; };
+		62CC7E051EC3842800675A2A /* FirebaseAPI.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FirebaseAPI.m; sourceTree = "<group>"; };
 		62DC7BA41EC233AB006D8AB6 /* WatchKit-Todo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "WatchKit-Todo.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		62DC7BA71EC233AB006D8AB6 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Interface.storyboard; sourceTree = "<group>"; };
 		62DC7BA91EC233AB006D8AB6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -292,6 +296,9 @@
 		62DC7BD21EC246C2006D8AB6 /* TV-todo-anywhere */ = {
 			isa = PBXGroup;
 			children = (
+				62CC7E031EC382CA00675A2A /* Credentials.h */,
+				62CC7E041EC3842800675A2A /* FirebaseAPI.h */,
+				62CC7E051EC3842800675A2A /* FirebaseAPI.m */,
 				62DC7BE51EC248B8006D8AB6 /* TVHomeViewController.h */,
 				62DC7BE61EC248B8006D8AB6 /* TVHomeViewController.m */,
 				62DC7BD61EC246C2006D8AB6 /* AppDelegate.h */,
@@ -573,6 +580,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				62DC7BD81EC246C2006D8AB6 /* AppDelegate.m in Sources */,
+				62CC7E061EC3842800675A2A /* FirebaseAPI.m in Sources */,
 				62DC7BD51EC246C2006D8AB6 /* main.m in Sources */,
 				62DC7BE71EC248B8006D8AB6 /* TVHomeViewController.m in Sources */,
 				62DC7BEE1EC27EAD006D8AB6 /* TVDetailViewController.m in Sources */,
@@ -873,6 +881,7 @@
 				62DC7BC41EC233AB006D8AB6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		62DC7BC71EC233AB006D8AB6 /* Build configuration list for PBXNativeTarget "WatchKit-Todo" */ = {
 			isa = XCConfigurationList;
@@ -881,6 +890,7 @@
 				62DC7BC21EC233AB006D8AB6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		62DC7BE21EC246C2006D8AB6 /* Build configuration list for PBXNativeTarget "TV-todo-anywhere" */ = {
 			isa = XCConfigurationList;
@@ -889,6 +899,7 @@
 				62DC7BE41EC246C2006D8AB6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
