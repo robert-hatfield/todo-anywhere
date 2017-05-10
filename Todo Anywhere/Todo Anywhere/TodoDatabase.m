@@ -87,6 +87,13 @@
     }];
 }
 
+- (void)createTodoWithTitle:(NSString *)title andContent:(NSString *)content {
+    FIRDatabaseReference *newtodoReference = [[self.userReference child:@"todos"] childByAutoId];
+    [[newtodoReference child:@"title"] setValue:title];
+    [[newtodoReference child:@"content"] setValue:content];
+    [[newtodoReference child:@"isCompleted"] setValue: @0];
+}
+
 - (void)signOut {
     NSError *signOutError;
     [[FIRAuth auth] signOut:&signOutError];

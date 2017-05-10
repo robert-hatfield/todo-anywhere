@@ -47,7 +47,7 @@ static NSTimeInterval const kShortAnimationDuration = 0.34;
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     [[TodoDatabase shared] checkuserStatusFrom:self];
-//    [self checkUserStatus];
+    [self.logOutButton setEnabled:YES];
 }
 
 - (void)updateTableView {

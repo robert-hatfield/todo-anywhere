@@ -7,14 +7,11 @@
 //
 
 #import "NewTodoViewController.h"
-
-@import Firebase;
-@import FirebaseAuth;
+#import "TodoDatabase.h"
 
 @interface NewTodoViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *titleTextField;
-
 @property (weak, nonatomic) IBOutlet UITextField *contentTextField;
 
 @end
@@ -27,14 +24,9 @@
 }
 
 - (IBAction)addTodoPressed:(UIButton *)sender {
-    FIRDatabaseReference *databaseReference = [[FIRDatabase database] reference];
-    FIRUser *currentUser = [[FIRAuth auth] currentUser];
-    FIRDatabaseReference *userReference = [[databaseReference child:@"users"] child:currentUser.uid];
     
-    FIRDatabaseReference *newtodoReference = [[userReference child:@"todos"] childByAutoId];
-    [[newtodoReference child:@"title"] setValue:self.titleTextField.text];
-    [[newtodoReference child:@"content"] setValue:self.contentTextField.text];
-    [[newtodoReference child:@"isCompleted"] setValue: @0];
+    [[TodoDatabase shared] createTodoWithTitle:self.titleTextField.text
+                                    andContent:self.contentTextField.text];
     self.titleTextField.text = @"";
     self.contentTextField.text = @"";
     [self.titleTextField resignFirstResponder];

@@ -18,5 +18,6 @@
 
 - (void)checkuserStatusFrom:(UIViewController *)viewController;
 - (void)signOut;
+- (void)createTodoWithTitle:(NSString *)title andContent:(NSString *)content;
 
 @end
