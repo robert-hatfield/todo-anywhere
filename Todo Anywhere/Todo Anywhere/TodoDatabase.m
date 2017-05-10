@@ -70,13 +70,10 @@
             NSNumber *boolNumber = todoData[@"isCompleted"];
             Boolean isCompleted = boolNumber.boolValue;
             
-            NSLog(@"ID: %@", identifier);
-            NSLog(@"Todo Title: %@ - Content: %@", todoTitle, todoContent);
             Todo *currentTodo = [[Todo alloc] init];
             currentTodo.title = todoTitle;
             currentTodo.content = todoContent;
             currentTodo.isCompleted = isCompleted;
-            NSLog(@"%hhu", currentTodo.isCompleted);
             
             if (currentTodo.isCompleted) {
                 [self.completedTodos addObject:currentTodo];
@@ -84,7 +81,6 @@
                 [self.openTodos addObject:currentTodo];
             }
         }
-        NSLog(@"%@", self.notificationCenter);
         [self.notificationCenter postNotificationName:@"todosChanged" object:nil];
     }];
 }
