@@ -7,8 +7,10 @@
 //
 
 #import "CompletedTodoViewController.h"
+#import "TodoDatabase.h"
+#import "TodoTableViewCell.h"
 
-@interface CompletedTodoViewController ()
+@interface CompletedTodoViewController () <UITableViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 
@@ -18,22 +20,39 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
+    
+    self.tableView.dataSource = self;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(updateTableView) name:@"todosChanged" object:nil];
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    
+    [[TodoDatabase shared] checkuserStatusFrom:self];
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (void)updateTableView {
+    [self.tableView reloadData];
 }
-*/
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"todosChanged" object:nil];
+}
+
+//MARK: Tableview datasource methods
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return [[TodoDatabase shared] completedTodos].count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    TodoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    
+    Todo *currentTodo = [TodoDatabase shared].completedTodos[indexPath.row];
+    cell.titleLabel.text = currentTodo.title;
+    cell.contentLabel.text = currentTodo.content;
+    
+    return cell;
+}
 
 @end

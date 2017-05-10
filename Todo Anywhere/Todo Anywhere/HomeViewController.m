@@ -38,6 +38,7 @@ static NSTimeInterval const kShortAnimationDuration = 0.34;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     self.todoTableView.dataSource = self;
     self.createTodoHeightConstraint.constant = kClosedConstraint;
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
@@ -46,6 +47,7 @@ static NSTimeInterval const kShortAnimationDuration = 0.34;
 
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
+    
     [[TodoDatabase shared] checkuserStatusFrom:self];
     [self.logOutButton setEnabled:YES];
 }
