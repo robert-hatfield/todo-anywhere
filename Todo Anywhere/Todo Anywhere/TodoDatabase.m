@@ -64,11 +64,13 @@
         
         for (FIRDataSnapshot *child in snapshot.children) {
             NSDictionary *todoData = child.value;
+            NSString *identifier = child.key;
             NSString *todoTitle = todoData[@"title"];
             NSString *todoContent = todoData[@"content"];
             NSNumber *boolNumber = todoData[@"isCompleted"];
             Boolean isCompleted = boolNumber.boolValue;
             
+            NSLog(@"ID: %@", identifier);
             NSLog(@"Todo Title: %@ - Content: %@", todoTitle, todoContent);
             Todo *currentTodo = [[Todo alloc] init];
             currentTodo.title = todoTitle;
@@ -89,6 +91,7 @@
 
 - (void)createTodoWithTitle:(NSString *)title andContent:(NSString *)content {
     FIRDatabaseReference *newtodoReference = [[self.userReference child:@"todos"] childByAutoId];
+    [[newtodoReference child:@"identifier"] setValue:newtodoReference.key];
     [[newtodoReference child:@"title"] setValue:title];
     [[newtodoReference child:@"content"] setValue:content];
     [[newtodoReference child:@"isCompleted"] setValue: @0];
