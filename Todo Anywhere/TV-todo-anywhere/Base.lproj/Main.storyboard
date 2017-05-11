@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="9zZ-J3-3sc">
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7ut-WI-Vdp">
     <device id="appleTV" orientation="landscape">
         <adaptation id="light"/>
     </device>
@@ -69,7 +69,61 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2183" y="71"/>
+            <point key="canvasLocation" x="2937" y="-32"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="SUn-2A-hHf">
+            <objects>
+                <viewController id="7ut-WI-Vdp" customClass="TVLoginViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="bBM-vf-7qs"/>
+                        <viewControllerLayoutGuide type="bottom" id="L5m-GF-EUr"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="9DC-Yv-zDi">
+                        <rect key="frame" x="0.0" y="0.0" width="1920" height="1080"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="me@apple.com" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cER-3r-51W">
+                                <rect key="frame" x="643" y="517" width="634" height="46"/>
+                                <nil key="textColor"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <textInputTraits key="textInputTraits" autocorrectionType="no" spellCheckingType="no" keyboardType="emailAddress"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ysL-BP-kWB">
+                                <rect key="frame" x="864" y="603" width="192" height="86"/>
+                                <color key="backgroundColor" red="0.0" green="1" blue="0.50196081400000003" alpha="1" colorSpace="calibratedRGB"/>
+                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                <state key="normal" title="LOGIN"/>
+                                <connections>
+                                    <action selector="loginButtonPressed:" destination="7ut-WI-Vdp" eventType="primaryActionTriggered" id="dVx-vq-8XF"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your email address:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FtG-3A-v4I">
+                                <rect key="frame" x="683" y="431" width="555" height="46"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="ysL-BP-kWB" firstAttribute="centerX" secondItem="9DC-Yv-zDi" secondAttribute="centerX" id="7SQ-v4-UoF"/>
+                            <constraint firstItem="cER-3r-51W" firstAttribute="width" secondItem="9DC-Yv-zDi" secondAttribute="width" multiplier="0.33" id="9ym-gn-0uT"/>
+                            <constraint firstItem="FtG-3A-v4I" firstAttribute="centerX" secondItem="9DC-Yv-zDi" secondAttribute="centerX" id="Kte-ki-jG0"/>
+                            <constraint firstItem="cER-3r-51W" firstAttribute="centerY" secondItem="9DC-Yv-zDi" secondAttribute="centerY" id="Uql-6G-4tq"/>
+                            <constraint firstItem="cER-3r-51W" firstAttribute="centerX" secondItem="9DC-Yv-zDi" secondAttribute="centerX" id="b2F-DR-Vtw"/>
+                            <constraint firstItem="ysL-BP-kWB" firstAttribute="top" secondItem="cER-3r-51W" secondAttribute="bottom" constant="40" id="oIm-39-3F0"/>
+                            <constraint firstItem="cER-3r-51W" firstAttribute="top" secondItem="FtG-3A-v4I" secondAttribute="bottom" constant="40" id="ytZ-W4-xZ6"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="emailTextField" destination="cER-3r-51W" id="MST-WD-Rdi"/>
+                        <outlet property="loginButton" destination="ysL-BP-kWB" id="tuH-B3-X04"/>
+                        <segue destination="9zZ-J3-3sc" kind="show" identifier="showNavigationController" id="3Ba-i3-j7z"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="KsM-kd-KLG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-215" y="-2074"/>
         </scene>
         <!--Title-->
         <scene sceneID="EmW-gb-NRv">
@@ -108,7 +162,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="RbB-fv-O9L" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4344" y="71"/>
+            <point key="canvasLocation" x="2937" y="2018"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="iXr-1B-DFN">
@@ -126,7 +180,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hXQ-rg-XR7" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-215" y="71"/>
+            <point key="canvasLocation" x="2937" y="-2074"/>
         </scene>
     </scenes>
 </document>
