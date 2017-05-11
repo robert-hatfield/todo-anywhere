@@ -53,10 +53,11 @@
     self.currentUser = [[FIRAuth auth] currentUser];
     self.userReference = [[databaseReference child:@"users"] child:self.currentUser.uid];
     NSLog(@"User reference: %@", self.userReference);
+    NSLog(@"Email: %@",self.currentUser.email);
+
 }
 
 - (void)startMonitoringTodoUpdates {
-    self.notificationCenter = [NSNotificationCenter defaultCenter];
     self.allTodosHandler = [[self.userReference child:@"todos"] observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         
         self.openTodos = [[NSMutableArray alloc] init];
@@ -64,13 +65,13 @@
         
         for (FIRDataSnapshot *child in snapshot.children) {
             NSDictionary *todoData = child.value;
-            NSString *identifier = child.key;
             NSString *todoTitle = todoData[@"title"];
             NSString *todoContent = todoData[@"content"];
             NSNumber *boolNumber = todoData[@"isCompleted"];
             Boolean isCompleted = boolNumber.boolValue;
             
             Todo *currentTodo = [[Todo alloc] init];
+            currentTodo.identifier = child.key;
             currentTodo.title = todoTitle;
             currentTodo.content = todoContent;
             currentTodo.isCompleted = isCompleted;
@@ -81,7 +82,7 @@
                 [self.openTodos addObject:currentTodo];
             }
         }
-        [self.notificationCenter postNotificationName:@"todosChanged" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"todosChanged" object:nil];
     }];
 }
 
