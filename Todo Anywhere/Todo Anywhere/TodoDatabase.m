@@ -98,6 +98,13 @@
     NSError *signOutError;
     [[FIRAuth auth] signOut:&signOutError];
     
+    if (!signOutError) {
+        // Clear objects from local data for privacy if sign out is successful.
+        [self.completedTodos removeAllObjects];
+        [self.openTodos removeAllObjects];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"todosChanged" object:nil];
+    }
+    
     
 
 }
