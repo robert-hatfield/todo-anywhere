@@ -8,6 +8,7 @@
 
 #import "LoginViewController.h"
 @import FirebaseAuth;
+@import FirebaseDatabase;
 
 @interface LoginViewController ()
 
@@ -51,7 +52,8 @@
          
          if (user) {
              NSLog(@"Created user: %@", user);
-             [self dismissViewControllerAnimated:YES completion:nil];
+             // Create an "email" key and assign to the new user record.
+             [[[[[[FIRDatabase database] reference] child:@"users"] child:user.uid] child:@"email"] setValue:user.email];             [self dismissViewControllerAnimated:YES completion:nil];
          }
          
      }];

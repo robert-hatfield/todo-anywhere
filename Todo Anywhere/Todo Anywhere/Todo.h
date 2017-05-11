@@ -10,7 +10,9 @@
 
 @interface Todo : NSObject
 
+@property (strong, nonatomic) NSString *identifier;
 @property (strong, nonatomic) NSString *title;
 @property (strong, nonatomic) NSString *content;
+@property (nonatomic) Boolean isCompleted;
 
 @end
