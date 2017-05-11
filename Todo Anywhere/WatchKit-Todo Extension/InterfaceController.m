@@ -9,8 +9,9 @@
 #import "InterfaceController.h"
 #import "TodoRowController.h"
 #import "Todo.h"
+@import WatchConnectivity;
 
-@interface InterfaceController ()
+@interface InterfaceController () <WCSessionDelegate>
 
 @property (unsafe_unretained, nonatomic) IBOutlet WKInterfaceTable *table;
 @property (strong, nonatomic) NSArray<Todo *> *allTodos;
@@ -54,8 +55,12 @@
 }
 
 - (void)willActivate {
-    // This method is called when watch view controller is about to be visible to user
+    // This method is called when watch view controller is about to be visible to user.
     [super willActivate];
+    
+    [[WCSession defaultSession] setDelegate:self];
+    // If session was not fully activated by ExtensionDelegate at launch, reattempt activating session.
+    [[WCSession defaultSession] activateSession];
 }
 
 - (void)didDeactivate {
@@ -63,13 +68,19 @@
     [super didDeactivate];
 }
 
-- (id)contextForSegueWithIdentifier:(NSString *)segueIdentifier inTable:(WKInterfaceTable *)table rowIndex:(NSInteger)rowIndex {
+- (id)contextForSegueWithIdentifier:(NSString *)segueIdentifier
+                            inTable:(WKInterfaceTable *)table
+                           rowIndex:(NSInteger)rowIndex {
+    
     return self.allTodos[rowIndex];
+    
 }
 
 - (IBAction)newTodoPressed {
     NSArray *suggestions = @[@"Get groceries", @"Walk the dog", @"Pay bills"];
-    [self presentTextInputControllerWithSuggestions:suggestions allowedInputMode:WKTextInputModePlain completion:^(NSArray * _Nullable results) {
+    [self presentTextInputControllerWithSuggestions:suggestions
+                                   allowedInputMode:WKTextInputModePlain
+                                         completion:^(NSArray * _Nullable results) {
         NSLog(@"%@", results);
     }];
 }
