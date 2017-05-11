@@ -52,31 +52,28 @@
     FIRDatabaseReference *databaseReference = [[FIRDatabase database] reference];
     self.currentUser = [[FIRAuth auth] currentUser];
     self.userReference = [[databaseReference child:@"users"] child:self.currentUser.uid];
-    NSLog(@"User reference: %@", self.userReference);
 }
 
 - (void)startMonitoringTodoUpdates {
-    self.notificationCenter = [NSNotificationCenter defaultCenter];
-    self.allTodosHandler = [[self.userReference child:@"todos"] observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+    self.allTodosHandler = [[self.userReference child:@"todos"]
+                            observeEventType:FIRDataEventTypeValue
+                            withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         
         self.openTodos = [[NSMutableArray alloc] init];
         self.completedTodos = [[NSMutableArray alloc] init];
         
         for (FIRDataSnapshot *child in snapshot.children) {
             NSDictionary *todoData = child.value;
-            NSString *identifier = child.key;
             NSString *todoTitle = todoData[@"title"];
             NSString *todoContent = todoData[@"content"];
             NSNumber *boolNumber = todoData[@"isCompleted"];
             Boolean isCompleted = boolNumber.boolValue;
             
-            NSLog(@"ID: %@", identifier);
-            NSLog(@"Todo Title: %@ - Content: %@", todoTitle, todoContent);
             Todo *currentTodo = [[Todo alloc] init];
+            currentTodo.identifier = child.key;
             currentTodo.title = todoTitle;
             currentTodo.content = todoContent;
             currentTodo.isCompleted = isCompleted;
-            NSLog(@"%hhu", currentTodo.isCompleted);
             
             if (currentTodo.isCompleted) {
                 [self.completedTodos addObject:currentTodo];
@@ -84,8 +81,7 @@
                 [self.openTodos addObject:currentTodo];
             }
         }
-        NSLog(@"%@", self.notificationCenter);
-        [self.notificationCenter postNotificationName:@"todosChanged" object:nil];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"todosChanged" object:nil];
     }];
 }
 
@@ -97,12 +93,27 @@
     [[newtodoReference child:@"isCompleted"] setValue: @0];
 }
 
+- (void)updateTodo:(NSString *)identifier withStringValue:(NSString *)value
+            forKey:(NSString *)key {
+    
+    [[[self.userReference child:@"todos"] child:identifier] setValue:value forKey:key];
+    
+}
+
+- (void)completeTodo:(NSString *)identifier {
+    [[[[self.userReference child:@"todos"] child:identifier] child:@"isCompleted"]setValue:@1];
+}
+
 - (void)signOut {
     NSError *signOutError;
     [[FIRAuth auth] signOut:&signOutError];
     
-    
-
+    if (!signOutError) {
+        // Clear objects from local data for privacy if sign out is successful.
+        [self.completedTodos removeAllObjects];
+        [self.openTodos removeAllObjects];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"todosChanged" object:nil];
+    }
 }
 
 @end
