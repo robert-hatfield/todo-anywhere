@@ -38,21 +38,21 @@
     }
 }
 
-- (NSArray<Todo *> *)allTodos {
-    Todo *firstTodo = [[Todo alloc] init];
-    firstTodo.title = @"First todo";
-    firstTodo.content = @"This is a todo.";
-    
-    Todo *secondTodo = [[Todo alloc] init];
-    secondTodo.title = @"Second todo";
-    secondTodo.content = @"This too, is a todo.";
-    
-    Todo *thirdTodo = [[Todo alloc] init];
-    thirdTodo.title = @"Third todo";
-    thirdTodo.content = @"And this is a do to do. It's probably past due.";
-    
-    return @[firstTodo, secondTodo, thirdTodo];
-}
+//- (NSArray<Todo *> *)allTodos {
+//    Todo *firstTodo = [[Todo alloc] init];
+//    firstTodo.title = @"First todo";
+//    firstTodo.content = @"This is a todo.";
+//    
+//    Todo *secondTodo = [[Todo alloc] init];
+//    secondTodo.title = @"Second todo";
+//    secondTodo.content = @"This too, is a todo.";
+//    
+//    Todo *thirdTodo = [[Todo alloc] init];
+//    thirdTodo.title = @"Third todo";
+//    thirdTodo.content = @"And this is a do to do. It's probably past due.";
+//    
+//    return @[firstTodo, secondTodo, thirdTodo];
+//}
 
 - (void)willActivate {
     // This method is called when watch view controller is about to be visible to user.
@@ -61,6 +61,29 @@
     [[WCSession defaultSession] setDelegate:self];
     // If session was not fully activated by ExtensionDelegate at launch, reattempt activating session.
     [[WCSession defaultSession] activateSession];
+    
+    // The message parameter is used to send new Todo data to Firebase. Sending an empty dictionary in current implementation to request updates.
+    [[WCSession defaultSession] sendMessage:@{}
+                               replyHandler:^(NSDictionary<NSString *,id> * _Nonnull replyMessage) {
+                                   
+                                NSMutableArray *allTodos = [[NSMutableArray alloc] init];
+                                   
+                                NSArray *todosDictionaries = replyMessage[@"todos"];
+                                   for (NSDictionary *todoObject in todosDictionaries) {
+                                       Todo *newTodo = [[Todo alloc] init];
+                                       newTodo.title = todoObject[@"title"];
+                                       newTodo.content = todoObject[@"content"];
+                                       // assign any other values here...
+                                       
+                                       [allTodos addObject:newTodo];
+                                   }
+                                   
+                                   self.allTodos = [allTodos copy];
+                                   [self setupTable];
+                                   
+    } errorHandler:^(NSError * _Nonnull error) {
+        NSLog(@"Error: %@", error.localizedDescription);
+    }];
 }
 
 - (void)didDeactivate {
