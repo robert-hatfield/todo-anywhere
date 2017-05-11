@@ -19,5 +19,7 @@
 - (void)checkuserStatusFrom:(UIViewController *)viewController;
 - (void)signOut;
 - (void)createTodoWithTitle:(NSString *)title andContent:(NSString *)content;
+- (void)updateTodo:(NSString *)identifier withStringValue:(NSString *)value forKey:(NSString *)key;
+- (void)completeTodo:(NSString *)identifier;
 
 @end

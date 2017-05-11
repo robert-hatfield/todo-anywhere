@@ -52,13 +52,12 @@
     FIRDatabaseReference *databaseReference = [[FIRDatabase database] reference];
     self.currentUser = [[FIRAuth auth] currentUser];
     self.userReference = [[databaseReference child:@"users"] child:self.currentUser.uid];
-    NSLog(@"User reference: %@", self.userReference);
-    NSLog(@"Email: %@",self.currentUser.email);
-
 }
 
 - (void)startMonitoringTodoUpdates {
-    self.allTodosHandler = [[self.userReference child:@"todos"] observeEventType:FIRDataEventTypeValue withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
+    self.allTodosHandler = [[self.userReference child:@"todos"]
+                            observeEventType:FIRDataEventTypeValue
+                            withBlock:^(FIRDataSnapshot * _Nonnull snapshot) {
         
         self.openTodos = [[NSMutableArray alloc] init];
         self.completedTodos = [[NSMutableArray alloc] init];
@@ -94,6 +93,17 @@
     [[newtodoReference child:@"isCompleted"] setValue: @0];
 }
 
+- (void)updateTodo:(NSString *)identifier withStringValue:(NSString *)value
+            forKey:(NSString *)key {
+    
+    [[[self.userReference child:@"todos"] child:identifier] setValue:value forKey:key];
+    
+}
+
+- (void)completeTodo:(NSString *)identifier {
+    [[[[self.userReference child:@"todos"] child:identifier] child:@"isCompleted"]setValue:@1];
+}
+
 - (void)signOut {
     NSError *signOutError;
     [[FIRAuth auth] signOut:&signOutError];
@@ -104,9 +114,6 @@
         [self.openTodos removeAllObjects];
         [[NSNotificationCenter defaultCenter] postNotificationName:@"todosChanged" object:nil];
     }
-    
-    
-
 }
 
 @end

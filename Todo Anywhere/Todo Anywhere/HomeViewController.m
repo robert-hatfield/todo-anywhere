@@ -16,7 +16,7 @@ static CGFloat const kClosedConstraint = 0.0;
 static CGFloat const kOpenConstraint = 150.0;
 static NSTimeInterval const kShortAnimationDuration = 0.34;
 
-@interface HomeViewController () <UITableViewDataSource>
+@interface HomeViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *logOutButton;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *createTodoHeightConstraint;
@@ -30,9 +30,13 @@ static NSTimeInterval const kShortAnimationDuration = 0.34;
     [super viewDidLoad];
     
     self.todoTableView.dataSource = self;
+    self.todoTableView.delegate = self;
     self.createTodoHeightConstraint.constant = kClosedConstraint;
     NSNotificationCenter *notificationCenter = [NSNotificationCenter defaultCenter];
-    [notificationCenter addObserver:self selector:@selector(updateTableView) name:@"todosChanged" object:nil];
+    [notificationCenter addObserver:self
+                           selector:@selector(updateTableView)
+                               name:@"todosChanged"
+                             object:nil];
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -50,7 +54,7 @@ static NSTimeInterval const kShortAnimationDuration = 0.34;
     [[NSNotificationCenter defaultCenter]removeObserver:self name:@"todosChanged" object:nil];
 }
 
-//MARK: Tableview datasource methods
+//MARK: Tableview datasource & delegate methods
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     return [[TodoDatabase shared] openTodos].count;
 }
@@ -58,18 +62,24 @@ static NSTimeInterval const kShortAnimationDuration = 0.34;
 - (UITableViewCell *)tableView:(UITableView *)tableView
          cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     
-    TodoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
+    TodoTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"
+                                                              forIndexPath:indexPath];
     Todo *currentTodo = [TodoDatabase shared].openTodos[indexPath.row];
     cell.titleLabel.text = currentTodo.title;
     cell.contentLabel.text = currentTodo.content;
-    
+    cell.todo = currentTodo;
     return cell;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    TodoTableViewCell *selectedCell = [tableView cellForRowAtIndexPath:indexPath];
+    NSLog(@"%@", selectedCell.description);
+    NSString *selectedTodoIdentifier = selectedCell.todo.identifier;
+    [[TodoDatabase shared] completeTodo:selectedTodoIdentifier];
 }
 
 //MARK: User actions
 - (IBAction)logOutPressed:(UIBarButtonItem *)sender {
-//    NSError *signOutError;
-//    [[FIRAuth auth] signOut:&signOutError];
     NSError *signOutError;
     [[TodoDatabase shared] signOut];
     
