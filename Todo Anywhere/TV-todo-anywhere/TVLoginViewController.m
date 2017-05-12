@@ -24,7 +24,25 @@
 }
 
 - (IBAction)loginButtonPressed:(UIButton *)sender {
+    NSString *email = self.emailTextField.text;
+    NSLog(@"email entered: %@", email);
+    [FirebaseAPI checkForUserWithEmail:[NSString stringWithFormat:@"%@", email] andCompletion:^(NSArray<Todo *> *allTodos) {
+        if (allTodos.count > 0) {
+            [[NSUserDefaults standardUserDefaults] setObject:email forKey:@"email"];
+            [[NSUserDefaults standardUserDefaults] synchronize];
+            [self dismissViewControllerAnimated:YES completion:nil];
+        } else {
+            NSLog(@"No todos found for email.");
+        }
+    }];
+
 }
 
+
+//     [FirebaseAPI fetchAllTodos:^(NSArray<Todo *> *allTodos) {
+//        NSLog(@"All todos: %@", allTodos);
+//        self.allTodos = allTodos;
+//        [self.tableView reloadData];
+//    }]
 
 @end

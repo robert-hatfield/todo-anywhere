@@ -10,6 +10,7 @@
 #import "Todo.h"
 #import "TVDetailViewController.h"
 #import "FirebaseAPI.h"
+#import "TVLoginViewController.h"
 
 @interface TVHomeViewController () <UITableViewDataSource, UITableViewDelegate>
 
@@ -22,32 +23,33 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view.
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    
-    [FirebaseAPI fetchAllTodos:^(NSArray<Todo *> *allTodos) {
-        NSLog(@"All todos: %@", allTodos);
-        self.allTodos = allTodos;
-        [self.tableView reloadData];
-    }];
 }
 
-//- (NSArray<Todo *> *)allTodos {
-//    Todo *firstTodo = [[Todo alloc] init];
-//    firstTodo.title = @"First todo";
-//    firstTodo.content = @"This is a todo.";
-//    
-//    Todo *secondTodo = [[Todo alloc] init];
-//    secondTodo.title = @"Second todo";
-//    secondTodo.content = @"This too, is a todo.";
-//    
-//    Todo *thirdTodo = [[Todo alloc] init];
-//    thirdTodo.title = @"Third todo";
-//    thirdTodo.content = @"And this is a do to do. It's probably past due.";
-//    
-//    return @[firstTodo, secondTodo, thirdTodo];
-//}
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self checkUserStatus];
+}
+
+- (void)checkUserStatus {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *email = [userDefaults stringForKey:@"email"];
+    
+    if (!email) {
+        TVLoginViewController *loginController = [self.storyboard instantiateViewControllerWithIdentifier:@"TVLoginViewController"];
+        [self presentViewController:loginController animated:YES completion:nil];
+    } else {
+        [FirebaseAPI fetchAllTodos:^(NSArray<Todo *> *allTodos) {
+            NSLog(@"All todos: %@", allTodos);
+            self.allTodos = allTodos;
+            [self.tableView reloadData];
+        }];
+    }
+
+}
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];

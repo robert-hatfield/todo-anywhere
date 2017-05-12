@@ -15,4 +15,6 @@ typedef void(^AllTodosCompletion)(NSArray<Todo *> *allTodos);
 
 +(void)fetchAllTodos:(AllTodosCompletion)completion;
 
++(void)checkForUserWithEmail:(NSString *)email andCompletion:(AllTodosCompletion)completion;
+
 @end
