@@ -42,13 +42,11 @@
         TVLoginViewController *loginController = [self.storyboard instantiateViewControllerWithIdentifier:@"TVLoginViewController"];
         [self presentViewController:loginController animated:YES completion:nil];
     } else {
-        [FirebaseAPI fetchAllTodos:^(NSArray<Todo *> *allTodos) {
-            NSLog(@"All todos: %@", allTodos);
+        [FirebaseAPI checkForUserWithEmail:email andCompletion:^(NSArray<Todo *> *allTodos) {
             self.allTodos = allTodos;
             [self.tableView reloadData];
         }];
     }
-
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {

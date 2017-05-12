@@ -7,6 +7,7 @@
 //
 
 #import "TVLoginViewController.h"
+#import "TVHomeViewController.h"
 #import "FirebaseAPI.h"
 
 @interface TVLoginViewController ()
@@ -37,12 +38,5 @@
     }];
 
 }
-
-
-//     [FirebaseAPI fetchAllTodos:^(NSArray<Todo *> *allTodos) {
-//        NSLog(@"All todos: %@", allTodos);
-//        self.allTodos = allTodos;
-//        [self.tableView reloadData];
-//    }]
 
 @end
