@@ -16,6 +16,8 @@
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray<Todo *> *allTodos;
+@property (strong, nonatomic) NSArray <Todo *> *openTodos;
+@property (strong, nonatomic) NSArray <Todo *> *closedTodos;
 
 @end
 
@@ -38,7 +40,7 @@
     NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
     NSString *email = [userDefaults stringForKey:@"email"];
     
-    if (!email) {
+    if (!email || [email isEqualToString:@""]) {
         TVLoginViewController *loginController = [self.storyboard instantiateViewControllerWithIdentifier:@"TVLoginViewController"];
         [self presentViewController:loginController animated:YES completion:nil];
     } else {
@@ -70,5 +72,21 @@
     Todo *selectedTodo = self.allTodos[self.tableView.indexPathForSelectedRow.row];
     destinationVC.todo = selectedTodo;
 }
+
+//MARK: User actions
+- (IBAction)signOutPressed:(UIBarButtonItem *)sender {
+    [[NSUserDefaults standardUserDefaults] setValue:@"" forKey:@"email"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    self.allTodos = @[];
+    [self.tableView reloadData];
+    [self checkUserStatus];
+}
+
+- (IBAction)toDoPressed:(UIButton *)sender {
+}
+
+- (IBAction)donePressed:(UIButton *)sender {
+}
+
 
 @end

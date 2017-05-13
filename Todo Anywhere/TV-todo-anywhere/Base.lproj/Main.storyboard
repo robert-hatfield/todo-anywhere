@@ -6,6 +6,7 @@
     <dependencies>
         <deployment identifier="tvOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -23,7 +24,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="66" sectionFooterHeight="66" translatesAutoresizingMaskIntoConstraints="NO" id="5e1-z1-Loo">
-                                <rect key="frame" x="240" y="245" width="1440" height="540"/>
+                                <rect key="frame" x="370" y="185" width="1440" height="835"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="TgW-wz-zyp" detailTextLabel="4SW-ik-fCo" style="IBUITableViewCellStyleSubtitle" id="NCb-og-CGY">
@@ -52,22 +53,56 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tdx-BQ-5qW">
+                                <rect key="frame" x="115" y="185" width="195" height="86"/>
+                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                <state key="normal" title="To Do"/>
+                                <state key="selected" title="To Do"/>
+                                <connections>
+                                    <action selector="toDoPressed:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="xtS-NF-uNe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qES-p4-ks8">
+                                <rect key="frame" x="115" y="295" width="195" height="86"/>
+                                <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
+                                <state key="normal" title="Done"/>
+                                <connections>
+                                    <action selector="donePressed:" destination="BYZ-38-t0r" eventType="primaryActionTriggered" id="tmc-6H-nl7"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="5e1-z1-Loo" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.5" id="8Ft-qs-ARN"/>
-                            <constraint firstItem="5e1-z1-Loo" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="100" id="Wda-sa-5hP"/>
+                            <constraint firstItem="5e1-z1-Loo" firstAttribute="leading" secondItem="tdx-BQ-5qW" secondAttribute="trailing" constant="60" id="4ph-pi-XL9"/>
+                            <constraint firstItem="tdx-BQ-5qW" firstAttribute="top" secondItem="5e1-z1-Loo" secondAttribute="top" id="820-67-YPZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="5e1-z1-Loo" secondAttribute="trailing" constant="90" id="D3K-3K-ycj"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="5e1-z1-Loo" secondAttribute="bottom" constant="60" id="U3k-o9-o7N"/>
+                            <constraint firstItem="5e1-z1-Loo" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="40" id="ZJs-to-fry"/>
+                            <constraint firstItem="tdx-BQ-5qW" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="95" id="bDx-hK-6jV"/>
+                            <constraint firstItem="tdx-BQ-5qW" firstAttribute="leading" secondItem="qES-p4-ks8" secondAttribute="leading" id="cQI-zf-Iae"/>
+                            <constraint firstItem="tdx-BQ-5qW" firstAttribute="trailing" secondItem="qES-p4-ks8" secondAttribute="trailing" id="p27-yy-9SY"/>
+                            <constraint firstItem="qES-p4-ks8" firstAttribute="top" secondItem="tdx-BQ-5qW" secondAttribute="bottom" constant="24" id="wKg-e7-zC4"/>
                             <constraint firstItem="5e1-z1-Loo" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.75" id="yxy-de-myB"/>
-                            <constraint firstItem="5e1-z1-Loo" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="z4r-d6-oTR"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="TODO LIST" id="Byn-OI-6xt"/>
+                    <navigationItem key="navigationItem" title="TODO LIST" id="Byn-OI-6xt">
+                        <barButtonItem key="leftBarButtonItem" title="Sign Out" id="6E4-oy-HQO">
+                            <connections>
+                                <action selector="signOutPressed:" destination="BYZ-38-t0r" id="EJw-Yf-RCk"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="5e1-z1-Loo" id="cWy-7P-egc"/>
                         <segue destination="0d5-y0-bUx" kind="show" identifier="showTodoDetail" id="Q6f-UH-kqZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="left" id="ZF4-iL-fi6">
+                    <connections>
+                        <action selector="userSwipedLeft:" destination="BYZ-38-t0r" id="neK-nE-6hc"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2937" y="-32"/>
         </scene>
