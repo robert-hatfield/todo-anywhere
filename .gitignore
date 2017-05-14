@@ -160,3 +160,6 @@ playground.xcworkspace
 /*.gcno
 
 # End of https://www.gitignore.io/api/macos,swift,xcode,objective-c
+
+# Ignore secret key for Firebase
+Credentials.h
