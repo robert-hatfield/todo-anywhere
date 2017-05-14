@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="7ut-WI-Vdp">
+<document type="com.apple.InterfaceBuilder.AppleTV.Storyboard" version="3.0" toolsVersion="12120" systemVersion="16E195" targetRuntime="AppleTV" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="9zZ-J3-3sc">
     <device id="appleTV" orientation="landscape">
         <adaptation id="light"/>
     </device>
@@ -23,14 +23,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="100" sectionHeaderHeight="66" sectionFooterHeight="66" translatesAutoresizingMaskIntoConstraints="NO" id="5e1-z1-Loo">
-                                <rect key="frame" x="240" y="245" width="1440" height="540"/>
+                                <rect key="frame" x="326" y="230" width="1268" height="790"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="cell" textLabel="TgW-wz-zyp" detailTextLabel="4SW-ik-fCo" style="IBUITableViewCellStyleSubtitle" id="NCb-og-CGY">
-                                        <rect key="frame" x="0.0" y="66" width="1440" height="100"/>
+                                        <rect key="frame" x="0.0" y="66" width="1268" height="100"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="NCb-og-CGY" id="zJn-6S-fAa">
-                                            <rect key="frame" x="0.0" y="0.0" width="1424" height="100"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="1252" height="100"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="TgW-wz-zyp">
@@ -52,29 +52,54 @@
                                     </tableViewCell>
                                 </prototypes>
                             </tableView>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="ayn-OQ-dpW">
+                                <rect key="frame" x="821" y="153" width="278" height="70"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.10000000000000001" colorSpace="calibratedWhite"/>
+                                <segments>
+                                    <segment title="Open"/>
+                                    <segment title="Done"/>
+                                </segments>
+                                <connections>
+                                    <action selector="selectorControlChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="Ybb-oF-sme"/>
+                                </connections>
+                            </segmentedControl>
                         </subviews>
                         <color key="backgroundColor" red="0.0" green="0.0" blue="0.0" alpha="0.0" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
-                            <constraint firstItem="5e1-z1-Loo" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" multiplier="0.5" id="8Ft-qs-ARN"/>
-                            <constraint firstItem="5e1-z1-Loo" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="100" id="Wda-sa-5hP"/>
-                            <constraint firstItem="5e1-z1-Loo" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.75" id="yxy-de-myB"/>
-                            <constraint firstItem="5e1-z1-Loo" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="z4r-d6-oTR"/>
+                            <constraint firstItem="5e1-z1-Loo" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="EPM-ux-YfS"/>
+                            <constraint firstItem="5e1-z1-Loo" firstAttribute="top" secondItem="ayn-OQ-dpW" secondAttribute="bottom" constant="8" id="RrW-We-pfF"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="5e1-z1-Loo" secondAttribute="bottom" constant="60" id="U3k-o9-o7N"/>
+                            <constraint firstItem="ayn-OQ-dpW" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="8" id="kqy-pN-z5A"/>
+                            <constraint firstItem="ayn-OQ-dpW" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="sOe-Y5-807"/>
+                            <constraint firstItem="5e1-z1-Loo" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" multiplier="0.66" id="yxy-de-myB"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="TODO LIST" id="Byn-OI-6xt"/>
+                    <navigationItem key="navigationItem" title="TODO LIST" id="Byn-OI-6xt">
+                        <barButtonItem key="leftBarButtonItem" title="Sign Out" id="6E4-oy-HQO">
+                            <connections>
+                                <action selector="signOutPressed:" destination="BYZ-38-t0r" id="EJw-Yf-RCk"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
+                        <outlet property="selectorControl" destination="ayn-OQ-dpW" id="Agv-IR-iad"/>
                         <outlet property="tableView" destination="5e1-z1-Loo" id="cWy-7P-egc"/>
                         <segue destination="0d5-y0-bUx" kind="show" identifier="showTodoDetail" id="Q6f-UH-kqZ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="left" id="ZF4-iL-fi6">
+                    <connections>
+                        <action selector="userSwipedLeft:" destination="BYZ-38-t0r" id="neK-nE-6hc"/>
+                    </connections>
+                </swipeGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="2937" y="-32"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="SUn-2A-hHf">
             <objects>
-                <viewController id="7ut-WI-Vdp" customClass="TVLoginViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="TVLoginViewController" id="7ut-WI-Vdp" customClass="TVLoginViewController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="bBM-vf-7qs"/>
                         <viewControllerLayoutGuide type="bottom" id="L5m-GF-EUr"/>
@@ -95,7 +120,7 @@
                                 <inset key="contentEdgeInsets" minX="40" minY="20" maxX="40" maxY="20"/>
                                 <state key="normal" title="LOGIN"/>
                                 <connections>
-                                    <action selector="loginButtonPressed:" destination="7ut-WI-Vdp" eventType="primaryActionTriggered" id="dVx-vq-8XF"/>
+                                    <action selector="loginButtonPressed:" destination="7ut-WI-Vdp" eventType="primaryActionTriggered" id="Rb2-iB-vTe"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Please enter your email address:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FtG-3A-v4I">
@@ -116,9 +141,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="emailTextField" destination="cER-3r-51W" id="MST-WD-Rdi"/>
-                        <outlet property="loginButton" destination="ysL-BP-kWB" id="tuH-B3-X04"/>
-                        <segue destination="9zZ-J3-3sc" kind="show" identifier="showNavigationController" id="3Ba-i3-j7z"/>
+                        <outlet property="emailTextField" destination="cER-3r-51W" id="wav-zn-cBw"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KsM-kd-KLG" userLabel="First Responder" sceneMemberID="firstResponder"/>

@@ -13,6 +13,6 @@ typedef void(^AllTodosCompletion)(NSArray<Todo *> *allTodos);
 
 @interface FirebaseAPI : NSObject
 
-+(void)fetchAllTodos:(AllTodosCompletion)completion;
++(void)checkForUserWithEmail:(NSString *)email andCompletion:(AllTodosCompletion)completion;
 
 @end

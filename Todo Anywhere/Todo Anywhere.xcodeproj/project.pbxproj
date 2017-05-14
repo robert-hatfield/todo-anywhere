@@ -299,21 +299,21 @@
 		62DC7BD21EC246C2006D8AB6 /* TV-todo-anywhere */ = {
 			isa = PBXGroup;
 			children = (
+				62DC7BDC1EC246C2006D8AB6 /* Main.storyboard */,
 				62CC7E031EC382CA00675A2A /* Credentials.h */,
 				62CC7E041EC3842800675A2A /* FirebaseAPI.h */,
 				62CC7E051EC3842800675A2A /* FirebaseAPI.m */,
+				62DC7BEC1EC27EAD006D8AB6 /* TVDetailViewController.h */,
+				62DC7BED1EC27EAD006D8AB6 /* TVDetailViewController.m */,
 				62DC7BE51EC248B8006D8AB6 /* TVHomeViewController.h */,
 				62DC7BE61EC248B8006D8AB6 /* TVHomeViewController.m */,
-				62DC7BD61EC246C2006D8AB6 /* AppDelegate.h */,
-				62DC7BD71EC246C2006D8AB6 /* AppDelegate.m */,
-				62DC7BDC1EC246C2006D8AB6 /* Main.storyboard */,
-				62DC7BEC1EC27EAD006D8AB6 /* TVDetailViewController.h */,
 				62828FAF1EC4D03A0058F4C5 /* TVLoginViewController.h */,
 				62828FB01EC4D03A0058F4C5 /* TVLoginViewController.m */,
-				62DC7BED1EC27EAD006D8AB6 /* TVDetailViewController.m */,
+				62DC7BD31EC246C2006D8AB6 /* Supporting Files */,
+				62DC7BD61EC246C2006D8AB6 /* AppDelegate.h */,
+				62DC7BD71EC246C2006D8AB6 /* AppDelegate.m */,
 				62DC7BDF1EC246C2006D8AB6 /* Assets.xcassets */,
 				62DC7BE11EC246C2006D8AB6 /* Info.plist */,
-				62DC7BD31EC246C2006D8AB6 /* Supporting Files */,
 			);
 			path = "TV-todo-anywhere";
 			sourceTree = "<group>";

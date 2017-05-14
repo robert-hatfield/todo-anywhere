@@ -10,11 +10,15 @@
 #import "Todo.h"
 #import "TVDetailViewController.h"
 #import "FirebaseAPI.h"
+#import "TVLoginViewController.h"
 
 @interface TVHomeViewController () <UITableViewDataSource, UITableViewDelegate>
 
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray<Todo *> *allTodos;
+@property (strong, nonatomic) NSArray <Todo *> *openTodos;
+@property (strong, nonatomic) NSArray <Todo *> *closedTodos;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *selectorControl;
 
 @end
 
@@ -22,42 +26,62 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
     // Do any additional setup after loading the view.
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
-    
-    [FirebaseAPI fetchAllTodos:^(NSArray<Todo *> *allTodos) {
-        NSLog(@"All todos: %@", allTodos);
-        self.allTodos = allTodos;
-        [self.tableView reloadData];
-    }];
+    self.selectorControl.selectedSegmentIndex = 0;
 }
 
-//- (NSArray<Todo *> *)allTodos {
-//    Todo *firstTodo = [[Todo alloc] init];
-//    firstTodo.title = @"First todo";
-//    firstTodo.content = @"This is a todo.";
-//    
-//    Todo *secondTodo = [[Todo alloc] init];
-//    secondTodo.title = @"Second todo";
-//    secondTodo.content = @"This too, is a todo.";
-//    
-//    Todo *thirdTodo = [[Todo alloc] init];
-//    thirdTodo.title = @"Third todo";
-//    thirdTodo.content = @"And this is a do to do. It's probably past due.";
-//    
-//    return @[firstTodo, secondTodo, thirdTodo];
-//}
+- (void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self checkUserStatus];
+}
 
-- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell.textLabel.text = self.allTodos[indexPath.row].title;
-    cell.detailTextLabel.text = self.allTodos[indexPath.row].content;
+- (void)checkUserStatus {
+    NSUserDefaults *userDefaults = [NSUserDefaults standardUserDefaults];
+    NSString *email = [userDefaults stringForKey:@"email"];
+    
+    if (!email || [email isEqualToString:@""]) {
+        TVLoginViewController *loginController = [self.storyboard instantiateViewControllerWithIdentifier:@"TVLoginViewController"];
+        [self presentViewController:loginController animated:YES completion:nil];
+    } else {
+        [FirebaseAPI checkForUserWithEmail:email andCompletion:^(NSArray<Todo *> *allTodos) {
+            self.allTodos = allTodos;
+            [self.tableView reloadData];
+        }];
+    }
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView
+         cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"
+                                                            forIndexPath:indexPath];
+    switch (self.selectorControl.selectedSegmentIndex) {
+        case 0:
+            cell.textLabel.text = self.openTodos[indexPath.row].title;
+            cell.detailTextLabel.text = self.openTodos[indexPath.row].content;
+            break;
+        case 1:
+            cell.textLabel.text = self.closedTodos[indexPath.row].title;
+            cell.detailTextLabel.text = self.closedTodos[indexPath.row].content;
+            break;
+    }
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.allTodos.count;
+    switch (self.selectorControl.selectedSegmentIndex) {
+        case 0:
+            return self.openTodos.count;
+            break;
+        case 1:
+            return self.closedTodos.count;
+            break;
+        default:
+            return 0;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -69,6 +93,30 @@
     TVDetailViewController *destinationVC = segue.destinationViewController;
     Todo *selectedTodo = self.allTodos[self.tableView.indexPathForSelectedRow.row];
     destinationVC.todo = selectedTodo;
+}
+
+- (void)setAllTodos:(NSArray<Todo *> *)allTodos {
+    if (allTodos != _allTodos) {
+        _allTodos = allTodos;
+        NSPredicate *openPredicate = [NSPredicate predicateWithFormat:@"SELF.isCompleted == NO"];
+        NSPredicate *closedPredicate = [NSPredicate predicateWithFormat:@"SELF.isCompleted == YES"];
+        self.openTodos = [allTodos filteredArrayUsingPredicate:(openPredicate)];
+        self.closedTodos = [allTodos filteredArrayUsingPredicate:closedPredicate];
+        NSLog(@"Open todos: %@", self.openTodos);
+    }
+}
+
+//MARK: User actions
+- (IBAction)signOutPressed:(UIBarButtonItem *)sender {
+    [[NSUserDefaults standardUserDefaults] setValue:@"" forKey:@"email"];
+    [[NSUserDefaults standardUserDefaults] synchronize];
+    self.allTodos = @[];
+    [self.tableView reloadData];
+    [self checkUserStatus];
+}
+
+- (IBAction)selectorControlChanged:(UISegmentedControl *)sender {
+    [self.tableView reloadData];
 }
 
 @end
