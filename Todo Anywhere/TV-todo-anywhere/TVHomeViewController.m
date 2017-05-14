@@ -64,8 +64,6 @@
             cell.textLabel.text = self.closedTodos[indexPath.row].title;
             cell.detailTextLabel.text = self.closedTodos[indexPath.row].content;
             break;
-//        default:
-//            break;
     }
     return cell;
 }
@@ -79,7 +77,7 @@
             return self.closedTodos.count;
             break;
         default:
-            return self.openTodos.count;
+            return 0;
     }
 }
 
