@@ -18,6 +18,7 @@
 @property (strong, nonatomic) NSArray<Todo *> *allTodos;
 @property (strong, nonatomic) NSArray <Todo *> *openTodos;
 @property (strong, nonatomic) NSArray <Todo *> *closedTodos;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *selectorControl;
 
 @end
 
@@ -29,6 +30,7 @@
     // Do any additional setup after loading the view.
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
+    self.selectorControl.selectedSegmentIndex = 0;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
@@ -53,13 +55,32 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell" forIndexPath:indexPath];
-    cell.textLabel.text = self.allTodos[indexPath.row].title;
-    cell.detailTextLabel.text = self.allTodos[indexPath.row].content;
+    switch (self.selectorControl.selectedSegmentIndex) {
+        case 0:
+            cell.textLabel.text = self.openTodos[indexPath.row].title;
+            cell.detailTextLabel.text = self.openTodos[indexPath.row].content;
+            break;
+        case 1:
+            cell.textLabel.text = self.closedTodos[indexPath.row].title;
+            cell.detailTextLabel.text = self.closedTodos[indexPath.row].content;
+            break;
+//        default:
+//            break;
+    }
     return cell;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.allTodos.count;
+    switch (self.selectorControl.selectedSegmentIndex) {
+        case 0:
+            return self.openTodos.count;
+            break;
+        case 1:
+            return self.closedTodos.count;
+            break;
+        default:
+            return self.openTodos.count;
+    }
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
@@ -73,6 +94,17 @@
     destinationVC.todo = selectedTodo;
 }
 
+- (void)setAllTodos:(NSArray<Todo *> *)allTodos {
+    if (allTodos != _allTodos) {
+        _allTodos = allTodos;
+        NSPredicate *openPredicate = [NSPredicate predicateWithFormat:@"SELF.isCompleted == NO"];
+        NSPredicate *closedPredicate = [NSPredicate predicateWithFormat:@"SELF.isCompleted == YES"];
+        self.openTodos = [allTodos filteredArrayUsingPredicate:(openPredicate)];
+        self.closedTodos = [allTodos filteredArrayUsingPredicate:closedPredicate];
+        NSLog(@"Open todos: %@", self.openTodos);
+    }
+}
+
 //MARK: User actions
 - (IBAction)signOutPressed:(UIBarButtonItem *)sender {
     [[NSUserDefaults standardUserDefaults] setValue:@"" forKey:@"email"];
@@ -82,11 +114,8 @@
     [self checkUserStatus];
 }
 
-- (IBAction)toDoPressed:(UIButton *)sender {
+- (IBAction)selectorControlChanged:(UISegmentedControl *)sender {
+    [self.tableView reloadData];
 }
-
-- (IBAction)donePressed:(UIButton *)sender {
-}
-
 
 @end
